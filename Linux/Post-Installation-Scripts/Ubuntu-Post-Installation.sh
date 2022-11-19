@@ -39,25 +39,25 @@ sudo apt install timeshift -y
 if [[ $(getconf LONG_BIT) = "64" ]]; then
 
     echo "64bit Detected"
-    echo "Installing Google Chrome..." 
-    
+    echo "Installing Google Chrome..."
+
     wget -P $HOME/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     pushd $HOME/Downloads
-    
+
     sudo dpkg -i google-chrome-stable_current_amd64.deb
-    
+
     rm -f google-chrome-stable_current_amd64.deb
     popd
 
 else
     echo "32bit Detected"
     echo "Installing Google Chrome..."
-    
+
     wget -P $HOME/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
     pushd $HOME/Downloads
-    
+
     sudo dpkg -i google-chrome-stable_current_i386.deb
-    
+
     rm -f google-chrome-stable_current_i386.deb
 	popd
 
@@ -73,12 +73,12 @@ sudo dpkg -i code_amd64.deb
 rm -f code_amd64.deb
 popd
 
-sudo apt udpate
+sudo apt update
 sudo apt install code -y
 
 
 # Install flatpak
-sudo apt install flatpak
+sudo apt install flatpak -y
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install flatpak pkgs
@@ -87,31 +87,32 @@ sudo flatpak install flathub com.discordapp.Discord -y
 sudo flatpak install flathub com.sublimetext.three -y
 
 # Remove Snapd pkgs
+sudo snap refresh
 sudo snap remove firefox
 
 # Remove Snapd core pkgs
 sudo snap remove snap-store
 sudo snap remove gtk-common-themes
-sudo snap remove gnome-system-monitor
-sudo snap remove gnome-3-34-1804
-sudo snap remove gnome-3-28-1804
-sudo snap remove core18
+sudo snap remove gnome-3-38-2004
+sudo snap remove snapd-desktop-integration
+sudo snap remove core20
+sudo snap remove bare
 sudo snap remove snapd
 
 # Completely remove snapd from system
 sudo rm -rf /var/cache/snapd/
-sudo apt autoremove --purge snapd gnome-software-plugin-snap
+sudo apt autoremove --purge snapd gnome-software-plugin-snap -y
 sudo rm -rf ~/snap
-sudo rm -rf /snap &> /dev/null
-sudo rm -rf /var/snap &> /dev/null
-sudo rm -rf /var/lib/snapd &> /dev/null
+sudo rm -rf /snap
+sudo rm -rf /var/snap
+sudo rm -rf /var/lib/snapd
 sudo apt-mark hold snapd
 
 # Cleanup
-sudo apt udpdate
+sudo apt update
 sudo apt upgrade -y
 sudo apt autoremove -y
-sudo apt autoclean
+sudo apt autoclean -y
 
 # Setup Dotfile
 pushd $HOME
@@ -122,6 +123,3 @@ chmod +x setup.sh
 ./setup.sh
 popd
 popd
-
-
-
