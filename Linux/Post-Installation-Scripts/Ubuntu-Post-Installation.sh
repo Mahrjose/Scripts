@@ -117,7 +117,7 @@ sudo apt autoclean -y
 # Setup Dotfile
 pushd $HOME
 
-git clone https://github.com/mahrjose/dotfiles
+git clone https://github.com/Mahrjose/dotfiles.git
 pushd dotfiles
 chmod +x setup.sh
 ./setup.sh
