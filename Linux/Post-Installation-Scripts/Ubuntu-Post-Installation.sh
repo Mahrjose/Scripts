@@ -85,6 +85,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo flatpak install flathub com.spotify.Client -y
 sudo flatpak install flathub com.discordapp.Discord -y
 sudo flatpak install flathub com.sublimetext.three -y
+sudo flatpak install flathub com.github.marktext.marktext -y
 
 # Remove Snapd pkgs
 sudo snap refresh
